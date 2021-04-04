@@ -1,0 +1,155 @@
+\documentclass{article}
+
+\usepackage[italian]{babel}     %testi autogenerati italiano
+\usepackage{graphicx}           %per importare immagini
+\usepackage{geometry}           %per gestire margini e spostamenti
+\usepackage[raggedright]{titlesec}
+\geometry {
+    top=20mm,
+    bmargin=20mm,
+}
+\usepackage{array}              %per colonne di width fissata
+\usepackage{subcaption}         %tabelle divise
+\usepackage{hyperref}           %links
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue
+}
+%\usepackage[bottom]{footmisc}   %footnotes fissate a piè pagina
+\usepackage{booktabs}           %per tabitem in tabular
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\renewcommand*{\thefootnote}{[\arabic{footnote}]}
+
+\begin{document}
+
+\setlength\parindent{0pt} %noindent automatico
+\setlength\parskip{1em}
+
+\begin{titlepage}
+	\centering
+	\hrule
+	
+	\vspace{6,5cm}
+	{\Huge \textbf{Home Challenge \#1\\
+		2020/21}\\}
+		
+		\vspace{0,5cm}
+		\large {Prof. Cesana Matteo}
+		
+		\vspace{2,5cm}
+		{
+			\large
+			\begin{tabular}{c c}
+				Shalby Hazem Hesham Yousef & (Personal Code: 10596243) \\
+			\end{tabular}
+			
+		}
+		\vspace{4cm}
+		
+		\normalsize{6 April 2021}
+		\vspace{0,2cm}
+		
+		\centering\hspace{0,2cm}\includegraphics[scale=0.6]{./logo.png}
+		\vspace{0,5cm}
+		\hrule
+		
+		\end{titlepage}
+		
+		\pagebreak
+		
+		
+		
+		\pagebreak
+		
+		\section{Questions} %1
+		
+		\subsection{What’s the difference between the message with MID: 3978 and the one with MID: 22636?} %1.1
+		The main difference between the two messages is that one is reliable (\textbf{MID: 3978}) and one is unreliable (\textbf{MID: 22636}). The reliability of the first message is ensured by CONFIRMABLE (\textbf{CON}) Message (no. 6701) which must be acknowledged through \textbf{ACK} Message (no. 6702). The second message is unreliable in fact the exchange is done via a NON-CONFIRMABLE (\textbf{NON}) message (no. 6943). The filter used to get all the information is:
+		\begin{center}
+			\texttt{coap.mid == 3978 || coap.mid == 22636}
+		\end{center}
+		
+		\subsection{Does the client receive the response of message No. 6949?} %1.2
+		\textbf{YES}. Using \texttt{frame.number == 6949} filter we get a CONFIRMABLE message with \texttt{MID: 28357} so we should have an ACK message with the same ID as response.\\
+		Using the \texttt{coap.mid == 28357 \&\& coap.type == 2} filter we get a message as result so the client received the response (\texttt{No. 6953}).
+		
+		\subsection{How many replies of type confirmable and result code “Content” are received by the server “localhost”?} %1.3
+		There are \textbf{8} messages that respect the request. The result is obtained by using the following filter:
+		\begin{center}
+			\texttt{ip.src == 127.0.0.1 \&\& coap.type == 2 \&\& coap.code == 69}
+		\end{center}
+		
+		\subsection{How many messages containing the topic “factory/department*/+” are published by a client with user name: “Jane”? \footnote{* replaces the dep. number, e.g. factory/department1/+, factory/department2/+ and so on.}} %1.4
+		\textbf{Zero}.
+		Using \texttt{mqtt.username == "jane"} filter I got 4 CONNECT messages related to four TCP stream with the following index:
+		\begin{itemize}
+			\item \texttt{112}
+			\item \texttt{121}
+			\item \texttt{230}
+			\item \texttt{354}
+		\end{itemize}
+		Using the previous information and the filter:
+		\begin{center}
+			\texttt{(tcp.stream == 112 || tcp.stream == 121 || tcp.stream == 230 || tcp.stream == 354 ) \&\& mqtt.msgtype == 3 \&\& mqtt.topic contains "factory/department"}
+		\end{center}
+		I got no message that respect the request.
+		
+		\subsection{How many clients connected to the broker “hivemq” have specified a will message?} %1.5
+		\textbf{10}. Using \texttt{dns.resp.name contains "hivemq"} filter we got \texttt{2} addresses as response:
+		\begin{itemize}
+			\item \texttt{18.185.199.22};
+			\item \texttt{3.120.68.56}.
+		\end{itemize}
+		And using \texttt{(ip.addr == 18.185.199.22 || ip.addr == 3.120.68.56) \&\& mqtt.willmsg} we got 10 messages as result.
+		
+		\subsection{How many publishes with QoS 1 don’t receive the ACK?} %1.6
+		\textbf{50}. Using \texttt{mqtt.msgtype == 3 \&\& mqtt.qos == 1} filter we got \texttt{124} messages published with \texttt{QoS 1}.
+		The reception of messages with \texttt{QoS 1} is confirmed by \texttt{PUBACK} message, but using \texttt{mqtt.msgtype == 4} we got only \texttt{74} messages, so there are \texttt{124-74= 50} messages that didn’t receive any ACK.
+		
+		\subsection{How many last will messages with QoS set to 0 are actually delivered?} %1.7
+		\textbf{ONE}. Using \texttt{mqtt.msgtype==1 \&\& mqtt.conflag.qos ==0 \&\& mqtt.willmsg} I got 14 connect messages that set the Will Message and only one is actually delivered.
+		
+		\subsection{Are all the messages with QoS \textgreater{ 0} published by the client 4m3DWYzWr40pce6OaBQAfk correctly delivered to the subscribers?} %1.8
+		\textbf{ONE}.
+		Using \texttt{mqtt.clientid == 4m3DWYzWr40pce6OaBQAfk} filter I got one massage (\texttt{no.964}) and this indicates only one connection by the client analyzed. Following the TCP connection and filtering using the filter:
+		\begin{center}
+			\texttt{tcp.stream eq 67 \&\& mqtt.qos>0 \&\& mqtt.msgtype==3}
+		\end{center}
+		I got 2 messages: \texttt{No.1008} and \texttt{No.2423}.\\
+		The first has \texttt{QoS == 1} so it’s correctly delivered if and only if a \texttt{PUBACK} is received, but using the filter:
+		\begin{center}
+			\texttt{tcp.stream eq 67 \&\&  mqtt.msgtype == 4}
+		\end{center}
+		
+		I got nothing.\\
+		The second has \texttt{QoS == 2} so it’s correctly received if and only if a \texttt{PUBREC} is received, and this happens, in fact using the filter: \begin{center}
+		\texttt{tcp.stream eq 67 \&\&  mqtt.msgtype == 5}
+		\end{center} 
+		I got one message (No.2425)
+		
+		
+		\subsection{What is the average message length of a connect msg using mqttv5 protocol? Why messages have different size?} %1.9
+		\textbf{The average length is 91 or 32}. The message have different length because the length of the options are different (username, password, etc...). For filtering the CONNECT messages that relay on MQTTv5, we use the following filter: 
+		\begin{center}
+			\texttt{mqtt.ver == 5 \&\& mqtt.msgtype == 1}
+		\end{center}
+		I proposed two answers because the question is unclear because it doesn't specify if the average length needed is the one of the entire frame (\texttt{91}) or only of the MQTT(\texttt{32}).
+		
+		\subsection{Why there aren’t any REQ/RESP pings in the pcap?} %1.10
+		The request/response mechanism is used to prevent clients with very low messages rates from being disconnected. In the pcap considered there aren't any REQ/RESP because the keepalive timer never expires.
+		\section{Filters Reference}
+		\begin{itemize}
+			\item \texttt{coap.type == 2} $\rightarrow$ COAP message related to an ACK
+			\item \texttt{coap.code == 69} $\rightarrow$ COAP message with result code equals to "Content"
+			\item \texttt{mqtt.msgtype == 1} $\rightarrow$ MQTT connect message
+			\item \texttt{mqtt.msgtype == 3} $\rightarrow$ MQTT publish message
+			\item \texttt{mqtt.msgtype == 4} $\rightarrow$ MQTT publish acknowledge (PUBACK) message
+			\item \texttt{mqtt.msgtype == 5} $\rightarrow$ MQTT publish receive (PUBREC) message
+			          
+			          
+		\end{itemize}
+		
+		\pagebreak
+		\clearpage
+\end{document}
