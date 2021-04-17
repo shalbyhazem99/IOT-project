@@ -18,7 +18,7 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 160,
+        "x": 120,
         "y": 80,
         "wires": [
             [
@@ -35,8 +35,8 @@
         "format": "lines",
         "chunk": false,
         "sendError": false,
-        "x": 370,
-        "y": 80,
+        "x": 190,
+        "y": 180,
         "wires": [
             [
                 "52cce04c.c6b168"
@@ -60,7 +60,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 130,
+        "x": 410,
         "y": 180,
         "wires": [
             [
@@ -103,7 +103,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 4,
-        "x": 270,
+        "x": 550,
         "y": 180,
         "wires": [
             [
@@ -134,26 +134,7 @@
         "func": "var namArr = msg.payload.split(',');\nnamArr.splice(0, namArr.length/2); \nvar nuovoArray = new Array();\nvar numOfPubblish=0;\nfor(i=0;i<namArr.length;i++){\n    if(namArr[i].includes(\"Publish Message\")){\n        nuovoArray[numOfPubblish] = {topic: namArr[i].slice(namArr[i].indexOf('[')+1,namArr[i].indexOf(']'))};\n        numOfPubblish++;\n    }\n}\nfor(i=0;i<numOfPubblish;i++){\n    var tempArr= namArr[namArr.length-numOfPubblish+i].split(' ');\n    nuovoArray[i].payload = (new Buffer(tempArr[tempArr.length-1].trim(), 'hex')).toString();\n}\nreturn [nuovoArray];",
         "outputs": 1,
         "noerr": 0,
-        "x": 480,
-        "y": 180,
-        "wires": [
-            [
-                "2623fce.0b1d184"
-            ]
-        ]
-    },
-    {
-        "id": "2623fce.0b1d184",
-        "type": "split",
-        "z": "4df2be30.e84de8",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 710,
+        "x": 760,
         "y": 180,
         "wires": [
             [
@@ -194,7 +175,7 @@
         "repair": false,
         "outputs": 4,
         "x": 290,
-        "y": 340,
+        "y": 400,
         "wires": [
             [
                 "22e21300.b543fe"
@@ -225,7 +206,7 @@
         "action": "",
         "pretty": false,
         "x": 130,
-        "y": 340,
+        "y": 400,
         "wires": [
             [
                 "29dab2c2.f1d14e"
@@ -252,7 +233,7 @@
         "to": "",
         "reg": false,
         "x": 490,
-        "y": 320,
+        "y": 380,
         "wires": [
             [
                 "799342fa.a7bc64"
@@ -279,7 +260,7 @@
         "to": "",
         "reg": false,
         "x": 490,
-        "y": 360,
+        "y": 420,
         "wires": [
             [
                 "799342fa.a7bc64"
@@ -295,7 +276,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 170,
-        "y": 520,
+        "y": 640,
         "wires": [
             [
                 "36e64ab9.356756"
@@ -311,18 +292,18 @@
         "timeout": "5",
         "timeoutUnits": "seconds",
         "rate": "1",
-        "nbRateUnits": "30",
-        "rateUnits": "second",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
         "randomFirst": "1",
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
         "x": 400,
-        "y": 520,
+        "y": 640,
         "wires": [
             [
-                "6a33183c.26718",
-                "305cc72f.d2c2a8"
+                "305cc72f.d2c2a8",
+                "6a33183c.26718"
             ]
         ]
     },
@@ -336,7 +317,7 @@
         "retain": "",
         "broker": "37c87300.b2287e",
         "x": 670,
-        "y": 520,
+        "y": 640,
         "wires": []
     },
     {
@@ -350,7 +331,7 @@
         "tostatus": false,
         "complete": "false",
         "x": 670,
-        "y": 580,
+        "y": 700,
         "wires": []
     },
     {
@@ -359,7 +340,7 @@
         "z": "4df2be30.e84de8",
         "name": "Read data",
         "info": "",
-        "x": 880,
+        "x": 1020,
         "y": 180,
         "wires": []
     },
@@ -370,7 +351,7 @@
         "name": "Elaborate data",
         "info": "",
         "x": 720,
-        "y": 340,
+        "y": 400,
         "wires": []
     },
     {
@@ -380,7 +361,7 @@
         "name": "Publish results",
         "info": "",
         "x": 860,
-        "y": 540,
+        "y": 660,
         "wires": []
     },
     {
