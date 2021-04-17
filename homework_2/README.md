@@ -1,5 +1,13 @@
 # Homework #1
 ## Assignment
-Analyse the traffic with wireshark of the [homework1.pcapng](./homework1.pcapng) file.
+Read the [traffic.csv](./traffic.csv) file
+Keep only publish messages coming from the following topics:
+▪ factory/department1/section1/plc
+▪ factory/department3/section3/plc
+▪ factory/department1/section1/hydraulic_valve
+▪ factory/department3/section3/hydraulic_valve
+Send the «value» field of the original message as MQTT messages to the thingspeak channel in order to fill charts and activate indicators.
 ## Result
-The answer to the proposed questions are in the [report](./report.pdf) file
+The final schema is the following: 
+![schema](./schema.png)
+The result is discussed in the [report](./report.pdf) file

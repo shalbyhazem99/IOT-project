@@ -66,27 +66,30 @@
 	    \section{NODE-RED} %2
 		The Node-red application could be divided into three parts:
 			\begin{itemize}
-			\item \textbf{PARSING DATA}: the data are read from the CSV file and using a function block they are then formatted.
+			\item \textbf{PARSING DATA}: the data are read from the CSV file and using a function block they are then formatted.\footnote{The provided CSV Node of NODE-RED is not used because the provided file is not well formatted.}
 			\item \textbf{ELABORATING DATA}: here only the publish messages are taken into consideration and the correct field is attached to every data.
 			\item \textbf{PUBLISHING RESULTS}: the MQTT message is created and then published\footnote{The messages rate is 1 message/minute to avoid any problem with ThingSpeak}.
             \end{itemize}
 		
 		\section{Results} %3
-		Running the Node-red application on the given CSV file, I got 36 results which are divided as follow:
+		Running the Node-red application on the given CSV file, I got 49 results which are divided as follows:
 		
 		\begin{itemize}
-		    \item \texttt{19} for topic \texttt{factory/department1/section1/plc}
+		    \item \texttt{20} for topic \texttt{factory/department1/section1/plc}
 		    \item \texttt{0} for topic \texttt{factory/department3/section3/plc}
-		    \item \texttt{6} for topic \texttt{factory/department1/section1/hydraulic\_valve}
-		    \item \texttt{11} for topic \texttt{ factory/department3/section3/hydraulic\_valve}
+		    \item \texttt{13} for topic \texttt{factory/department1/section1/hydraulic\_valve}
+		    \item \texttt{16} for topic \texttt{ factory/department3/section3/hydraulic\_valve}
 
 		\end{itemize}
 		The results grouped by field are the following: 
 		\begin{itemize}
-		    \item Field 1: \texttt{4,21,66,66,66,764,32,32,36,36,5,66,1747,4,31,764,14,2010,1380}
-		    \item Field 2: \texttt{2,1344,2501,60,11,559,30,42,20,3162,195,1,1,39,1344,1344,39}
+		    \item \textbf{Field 1}: \texttt{4,403,21,66,66,66,764,32,32,36,36,5,66,1747,4,31,764,14,2010,1380}
+		    \item \textbf{Field 2}: \texttt{2,1344,14,638,14,1344,60,11,559,30,42,20,3162,14,195,2,14,14,14,\\3162,3162,1,1,39,14,1344,1344,3162,39}
 		\end{itemize}
 		
+		\section{CSV Assumptions} %4
+		The only assumption made is that the hex value at the end of every line appear in the same order of the publish message.\\\\
+		\pagebreak
 		\pagebreak
 		\clearpage
 \end{document}
