@@ -17,9 +17,11 @@ Thingspeak channel receives data and visualize them using:
 + 2 charts for field1 and field2
 + 2 lamps indicator (turn it ON w/ data >= 2000) for field1 and field2
 
-channelID: [1359553](https://thingspeak.com/channels/1359553)
+channel ID: [1359553](https://thingspeak.com/channels/1359553)
 
 ## Result
 The final schema is the following: 
+
 ![schema](./schema.PNG)
+
 The result is discussed in the [report](./report.pdf) file
