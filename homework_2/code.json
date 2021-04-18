@@ -19,6 +19,7 @@
         "once": false,
         "onceDelay": 0.1,
         "x": 120,
+        "y": 80,
         "wires": [
             [
                 "3e6376b2.dc4efa"
