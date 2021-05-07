@@ -1,27 +1,23 @@
-# Homework #2
-The goal of this homework is to replicate real MQTT messages and send them to a thingspeak channel.
+# Homework #3
+The goal of this homework is to use Cooja to simulate the interaction of three mote on which an application for TinyOS has been installed.
+<div align="center">
+  
+![simulation screen](./mote_screen.PNG)
+</div>
 
 ## Assignment
-Read the [traffic.csv](./traffic.csv) file, and keep only publish messages coming from the following topics:
-
-+ factory/department1/section1/plc
-+ factory/department3/section3/plc
-+ factory/department1/section1/hydraulic_valve
-+ factory/department3/section3/hydraulic_valve
-
-Send the «value» field of the original message as MQTT messages to the thingspeak channel in order to fill charts and activate indicators.
-
-## ThingSpeak
-Thingspeak channel receives data and visualize them using:
-
-+ 2 charts for field1 and field2
-+ 2 lamps indicator (turn it ON w/ data >= 2000) for field1 and field2
-
-channel ID: [1359553](https://thingspeak.com/channels/1359553)
++ Create a Cooja simulation with three TinyOS (sky) motes, called 1, 2 and 3.
++ The three motes communicate over the radio. The message is composed by a counter and the sender id. All the messages are sent in BROADCAST.
++ Messages are sent at:
+  +  1 Hz for mote 1
+  +  3 Hz for mote 2
+  +  5 Hz for mote 3
++ Turn on/off the LEDs according the following rules:
+  + Messages sent by mote 1 toggle led0
+  + Messages sent by mote 2 toggle led1
+  + Messages sent by mote 3 toggle led2
+  + Messages received with ’counter mod 10’ == 0 turn off all the LEDs
++ The counter is incremented after a new message is received.
 
 ## Result
-The final schema is the following: 
-
-![schema](./schema.PNG)
-
 The result is discussed in the [report](./report.pdf) file
