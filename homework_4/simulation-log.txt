@@ -1,0 +1,104 @@
+DEBUG (1): Application booted on node 1.
+DEBUG (1): Radio on!
+DEBUG (1): Preparing the REQ message... 
+DEBUG (1): Packet ACK request done correctly!
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 4 
+	 Payload Sent
+		 type: 1 
+ 		 counter: 0 
+		 data: 0 
+DEBUG (1): Packet sent... at time 0:0:0.986907908 
+ERROR (1): Packet not acked!
+
+DEBUG (1): Preparing the REQ message... 
+DEBUG (1): Packet ACK request done correctly!
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 4 
+	 Payload Sent
+		 type: 1 
+ 		 counter: 1 
+		 data: 0 
+DEBUG (1): Packet sent... at time 0:0:1.956161491 
+ERROR (1): Packet not acked!
+
+DEBUG (1): Preparing the REQ message... 
+DEBUG (1): Packet ACK request done correctly!
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 4 
+	 Payload Sent
+		 type: 1 
+ 		 counter: 2 
+		 data: 0 
+DEBUG (1): Packet sent... at time 0:0:2.936355561 
+ERROR (1): Packet not acked!
+
+DEBUG (1): Preparing the REQ message... 
+DEBUG (1): Packet ACK request done correctly!
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 4 
+	 Payload Sent
+		 type: 1 
+ 		 counter: 3 
+		 data: 0 
+DEBUG (1): Packet sent... at time 0:0:3.911773659 
+ERROR (1): Packet not acked!
+
+DEBUG (1): Preparing the REQ message... 
+DEBUG (1): Packet ACK request done correctly!
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 4 
+	 Payload Sent
+		 type: 1 
+ 		 counter: 4 
+		 data: 0 
+DEBUG (1): Packet sent... at time 0:0:4.892456008 
+ERROR (1): Packet not acked!
+
+DEBUG (2): Application booted on node 2.
+DEBUG (2): Radio on!
+DEBUG (1): Preparing the REQ message... 
+DEBUG (1): Packet ACK request done correctly!
+DEBUG (1): Packet passed to lower layer successfully!
+DEBUG (1): >>>Pack
+ 	 Payload length 4 
+	 Payload Sent
+		 type: 1 
+ 		 counter: 5 
+		 data: 0 
+DEBUG (2): Received packet at time 0:0:5.864028913
+DEBUG (2):  Payload length 4 
+DEBUG (2): >>>Pack 
+		 Payload Received
+		 type: 1 
+ 		 counter: 5 
+		 data: 0 
+DEBUG (2): Received REQ packet with counter: 5.
+DEBUG (1): Packet sent... at time 0:0:5.864196759 
+DEBUG (1): Packet acked
+DEBUG (1): Stopping timer.....
+DEBUG (2): Preparing the RESP message... 
+DEBUG (2): Packet ACK request done correctly!
+DEBUG (2): Packet passed to lower layer successfully!
+DEBUG (2): >>>Pack
+ 	 Payload length 4 
+	 Payload Sent
+		 type: 2 
+ 		 counter: 5 
+		 data: 50421 
+DEBUG (1): Received packet at time 0:0:5.876876818
+DEBUG (1):  Payload length 4 
+DEBUG (1): >>>Pack 
+		 Payload Received
+		 type: 2 
+ 		 counter: 5 
+		 data: 50421 
+DEBUG (1): Received RESP packet
+DEBUG (2): Packet sent... at time 0:0:5.877044664 
+DEBUG (2): Packet acked
+DEBUG (2): Stopping timer.....
