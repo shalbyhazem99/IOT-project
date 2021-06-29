@@ -87,25 +87,21 @@ implementation
 		{
 			foo_msg_t *rcm = (foo_msg_t*) payload;
 			
-			if(cons_msg_count[rcm->id]==0 || last_msg_count[rcm->id] +1 == rcm->counter){ //reciving consecutive message
-				last_msg_count[rcm->id]++;
-				cons_msg_count[rcm->id]++;
+			if(cons_msg_count[rcm->id-1]==0 || last_msg_count[rcm->id-1] +1 == rcm->counter){ //reciving consecutive message
+				last_msg_count[rcm->id-1]++;
+				cons_msg_count[rcm->id-1]++;
 			}
-			else if(last_msg_count[rcm->id] +1 < rcm->counter){ //one or more message has not been sent
-				last_msg_count[rcm->id]=rcm->counter;
-				cons_msg_count[rcm->id]=1;
+			else if(last_msg_count[rcm->id-1] +1 < rcm->counter){ //one or more message has not been sent
+				last_msg_count[rcm->id-1]=rcm->counter;
+				cons_msg_count[rcm->id-1]=1;
 			}
 			
-			//printf("ID: %d, COUNT: %d\n", rcm->id , rcm->counter);
-			//printfflush();
-			if(cons_msg_count[rcm->id] ==10){
-				cons_msg_count[rcm->id]=0;
+			if(cons_msg_count[rcm->id-1] ==10){
+				cons_msg_count[rcm->id-1]=0;
 				//send notification to node-red
-				printf("ALARM! %d,%d\n",TOS_NODE_ID, rcm->id);
+				printf("{\"ALARM\":{\"id_first_mote\":%d,\"id_second_mote\":%d}}\n",TOS_NODE_ID, rcm->id);
 				printfflush();
 			}
-			
-			
 			return bufPtr;
 		}
 	}

@@ -1,0 +1,225 @@
+[
+    {
+        "id": "9a2ec61f.b1e5c",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "faf53c0.591dd48",
+        "type": "tcp in",
+        "z": "9a2ec61f.b1e5c",
+        "name": "",
+        "server": "client",
+        "host": "localhost",
+        "port": "60001",
+        "datamode": "stream",
+        "datatype": "utf8",
+        "newline": "\\n",
+        "topic": "",
+        "base64": false,
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "9b0d3c28.1af388"
+            ]
+        ]
+    },
+    {
+        "id": "6b0e958b.43c2c4",
+        "type": "http request",
+        "z": "9a2ec61f.b1e5c",
+        "name": "Web Req",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://maker.ifttt.com/trigger/{{event}}/with/key/{{api}}",
+        "tls": "",
+        "x": 820,
+        "y": 200,
+        "wires": [
+            [
+                "503780fc.9dd4b"
+            ]
+        ]
+    },
+    {
+        "id": "96c244e2.9ff5e",
+        "type": "debug",
+        "z": "9a2ec61f.b1e5c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 490,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "9401b366.843a3",
+        "type": "function",
+        "z": "9a2ec61f.b1e5c",
+        "name": "Req Params",
+        "func": "var temp = msg.payload.ALARM;\nif(temp.id_first_mote< temp.id_second_mote){\n    msg.event = \"alarm\";\n    msg.api =\"hrn3T-Lvtr3Cu6jRn8BLCN4wgmz9_2OFA81rBbumS4X\"\n    msg.payload = {\"value1\":temp.id_first_mote,\"value2\":temp.id_second_mote};\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 490,
+        "y": 200,
+        "wires": [
+            [
+                "96c244e2.9ff5e",
+                "5e420e26.c9c64"
+            ]
+        ]
+    },
+    {
+        "id": "a6c5ec32.5feca8",
+        "type": "tcp in",
+        "z": "9a2ec61f.b1e5c",
+        "name": "",
+        "server": "client",
+        "host": "localhost",
+        "port": "60003",
+        "datamode": "stream",
+        "datatype": "utf8",
+        "newline": "\\n",
+        "topic": "",
+        "base64": false,
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "9b0d3c28.1af388"
+            ]
+        ]
+    },
+    {
+        "id": "17f4e55e.55c3b3",
+        "type": "tcp in",
+        "z": "9a2ec61f.b1e5c",
+        "name": "",
+        "server": "client",
+        "host": "localhost",
+        "port": "60002",
+        "datamode": "stream",
+        "datatype": "utf8",
+        "newline": "\\n",
+        "topic": "",
+        "base64": false,
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "9b0d3c28.1af388"
+            ]
+        ]
+    },
+    {
+        "id": "3313f78e.10ef4",
+        "type": "tcp in",
+        "z": "9a2ec61f.b1e5c",
+        "name": "",
+        "server": "client",
+        "host": "localhost",
+        "port": "60004",
+        "datamode": "stream",
+        "datatype": "utf8",
+        "newline": "\\n",
+        "topic": "",
+        "base64": false,
+        "x": 130,
+        "y": 260,
+        "wires": [
+            [
+                "9b0d3c28.1af388"
+            ]
+        ]
+    },
+    {
+        "id": "fae31806.ad2738",
+        "type": "tcp in",
+        "z": "9a2ec61f.b1e5c",
+        "name": "",
+        "server": "client",
+        "host": "localhost",
+        "port": "60005",
+        "datamode": "stream",
+        "datatype": "utf8",
+        "newline": "\\n",
+        "topic": "",
+        "base64": false,
+        "x": 130,
+        "y": 320,
+        "wires": [
+            [
+                "9b0d3c28.1af388"
+            ]
+        ]
+    },
+    {
+        "id": "9b0d3c28.1af388",
+        "type": "json",
+        "z": "9a2ec61f.b1e5c",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 350,
+        "y": 200,
+        "wires": [
+            [
+                "9401b366.843a3"
+            ]
+        ]
+    },
+    {
+        "id": "503780fc.9dd4b",
+        "type": "debug",
+        "z": "9a2ec61f.b1e5c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 820,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "5e420e26.c9c64",
+        "type": "delay",
+        "z": "9a2ec61f.b1e5c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "2",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 670,
+        "y": 200,
+        "wires": [
+            [
+                "6b0e958b.43c2c4"
+            ]
+        ]
+    },
+    {
+        "id": "a90787c4.dcbf18",
+        "type": "comment",
+        "z": "9a2ec61f.b1e5c",
+        "name": "limit rate",
+        "info": "since IFTTT has a limit of 120 events/minute",
+        "x": 660,
+        "y": 140,
+        "wires": []
+    }
+]
