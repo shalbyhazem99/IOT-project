@@ -2,7 +2,7 @@
     {
         "id": "9a2ec61f.b1e5c",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "KEEP YOUR DISTANCE",
         "disabled": false,
         "info": ""
     },
@@ -23,7 +23,7 @@
         "y": 80,
         "wires": [
             [
-                "9b0d3c28.1af388"
+                "fc332243.28e74"
             ]
         ]
     },
@@ -36,7 +36,7 @@
         "ret": "txt",
         "url": "https://maker.ifttt.com/trigger/{{event}}/with/key/{{api}}",
         "tls": "",
-        "x": 820,
+        "x": 1020,
         "y": 200,
         "wires": [
             [
@@ -54,7 +54,7 @@
         "console": false,
         "tostatus": false,
         "complete": "payload",
-        "x": 490,
+        "x": 690,
         "y": 320,
         "wires": []
     },
@@ -66,7 +66,7 @@
         "func": "var temp = msg.payload.ALARM;\nif(temp.id_first_mote< temp.id_second_mote){\n    msg.event = \"alarm\";\n    msg.api =\"hrn3T-Lvtr3Cu6jRn8BLCN4wgmz9_2OFA81rBbumS4X\"\n    msg.payload = {\"value1\":temp.id_first_mote,\"value2\":temp.id_second_mote};\n    return msg;\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 490,
+        "x": 690,
         "y": 200,
         "wires": [
             [
@@ -92,7 +92,7 @@
         "y": 200,
         "wires": [
             [
-                "9b0d3c28.1af388"
+                "fc332243.28e74"
             ]
         ]
     },
@@ -113,7 +113,7 @@
         "y": 140,
         "wires": [
             [
-                "9b0d3c28.1af388"
+                "fc332243.28e74"
             ]
         ]
     },
@@ -134,7 +134,7 @@
         "y": 260,
         "wires": [
             [
-                "9b0d3c28.1af388"
+                "fc332243.28e74"
             ]
         ]
     },
@@ -155,7 +155,7 @@
         "y": 320,
         "wires": [
             [
-                "9b0d3c28.1af388"
+                "fc332243.28e74"
             ]
         ]
     },
@@ -167,7 +167,7 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 350,
+        "x": 550,
         "y": 200,
         "wires": [
             [
@@ -185,7 +185,7 @@
         "console": false,
         "tostatus": false,
         "complete": "false",
-        "x": 820,
+        "x": 1020,
         "y": 320,
         "wires": []
     },
@@ -204,7 +204,7 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 670,
+        "x": 870,
         "y": 200,
         "wires": [
             [
@@ -218,8 +218,54 @@
         "z": "9a2ec61f.b1e5c",
         "name": "limit rate",
         "info": "since IFTTT has a limit of 120 events/minute",
-        "x": 660,
+        "x": 860,
         "y": 140,
+        "wires": []
+    },
+    {
+        "id": "fc332243.28e74",
+        "type": "switch",
+        "z": "9a2ec61f.b1e5c",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "{",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 370,
+        "y": 200,
+        "wires": [
+            [
+                "9b0d3c28.1af388",
+                "315d36c2.359c4a"
+            ],
+            [
+                "315d36c2.359c4a"
+            ]
+        ]
+    },
+    {
+        "id": "315d36c2.359c4a",
+        "type": "debug",
+        "z": "9a2ec61f.b1e5c",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 470,
+        "y": 320,
         "wires": []
     }
 ]

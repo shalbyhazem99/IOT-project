@@ -21,7 +21,7 @@ implementation
 	message_t packet;
 
 	bool locked;
-	uint16_t counter = 0;
+	uint16_t counter = 1;
 	uint16_t last_msg_count[N];
 	uint16_t cons_msg_count[N];
 
@@ -51,8 +51,6 @@ implementation
 
 	event void MilliTimer.fired()
 	{
-		//print counter the led value
-		dbg("RadioCountToLedsC", "RadioCountToLedsC: timer fired, counter is %hu.\n", counter);
 		if (locked)
 		{
 			return;
@@ -68,7 +66,6 @@ implementation
 			rcm->counter = counter;
 			if (call AMSend.send(AM_BROADCAST_ADDR, &packet, sizeof(foo_msg_t)) == SUCCESS)
 			{
-				dbg("RadioCountToLedsC", "RadioCountToLedsC: packet sent.\n", counter);
 				locked = TRUE;
 				counter++;
 			}
@@ -86,6 +83,8 @@ implementation
 		else
 		{
 			foo_msg_t *rcm = (foo_msg_t*) payload;
+			printf("recived msg from mote: %d with counter%d \n",rcm->id, rcm->counter);
+			printfflush();
 			
 			if(cons_msg_count[rcm->id-1]==0 || last_msg_count[rcm->id-1] +1 == rcm->counter){ //reciving consecutive message
 				last_msg_count[rcm->id-1]++;

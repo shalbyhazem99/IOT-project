@@ -1,0 +1,84 @@
+//the following is an extract of the Cooja simulation in which two motes are too close to each other for a bit  and then they move away
+
+TIME		TOS_ID	MESSAGE
+0:04.321	ID:2	Booted 2
+00:04.467	ID:1	Booted 1
+00:05.305	ID:1	recived msg from mote: 2 with counter1				// MOTE 1 recived 1 consecutive message from MOTE 2
+00:05.454	ID:2	recived msg from mote: 1 with counter1				// 
+00:05.797	ID:1	recived msg from mote: 2 with counter2				// MOTE 1 recived 2 consecutive message from MOTE 2
+00:05.940	ID:2	recived msg from mote: 1 with counter2 
+00:06.282	ID:1	recived msg from mote: 2 with counter3				// MOTE 1 recived 3 consecutive message from MOTE 2 
+00:06.428	ID:2	recived msg from mote: 1 with counter3 
+00:06.777	ID:1	recived msg from mote: 2 with counter4				// MOTE 1 recived 4 consecutive message from MOTE 2 
+00:06.922	ID:2	recived msg from mote: 1 with counter4 
+00:07.260	ID:1	recived msg from mote: 2 with counter5				// MOTE 1 recived 5 consecutive message from MOTE 2 
+00:07.413	ID:2	recived msg from mote: 1 with counter5 
+00:07.751	ID:1	recived msg from mote: 2 with counter6				// MOTE 1 recived 6 consecutive message from MOTE 2 
+00:07.897	ID:2	recived msg from mote: 1 with counter6 
+00:08.242	ID:1	recived msg from mote: 2 with counter7				// MOTE 1 recived 7 consecutive message from MOTE 2 
+00:08.385	ID:2	recived msg from mote: 1 with counter7 
+00:08.723	ID:1	recived msg from mote: 2 with counter8				// MOTE 1 recived 8 consecutive message from MOTE 2 
+00:08.869	ID:2	recived msg from mote: 1 with counter8 
+00:09.217	ID:1	recived msg from mote: 2 with counter9				// MOTE 1 recived 9 consecutive message from MOTE 2 
+00:09.358	ID:2	recived msg from mote: 1 with counter9 
+00:09.705	ID:1	recived msg from mote: 2 with counter10				// MOTE 1 recived 10 consecutive message from MOTE 2--->ALARM!!! 
+00:09.708	ID:1	{"ALARM":{"id_first_mote":1,"id_second_mote":2}}	//since mote 1 recives 10 consecutive messages from mote 2 an alarm is triggered
+00:09.851	ID:2	recived msg from mote: 1 with counter10 
+00:09.854	ID:2	{"ALARM":{"id_first_mote":2,"id_second_mote":1}}	//since mote 2 recives 10 consecutive messages from mote 1 an alarm is triggered
+00:10.192	ID:1	recived msg from mote: 2 with counter11 
+00:10.340	ID:2	recived msg from mote: 1 with counter11 
+00:10.685	ID:1	recived msg from mote: 2 with counter12 
+00:10.828	ID:2	recived msg from mote: 1 with counter12 
+00:11.173	ID:1	recived msg from mote: 2 with counter13 
+00:11.317	ID:2	recived msg from mote: 1 with counter13 
+00:11.654	ID:1	recived msg from mote: 2 with counter14 
+00:11.807	ID:2	recived msg from mote: 1 with counter14 
+00:12.150	ID:1	recived msg from mote: 2 with counter15 
+00:12.290	ID:2	recived msg from mote: 1 with counter15 
+00:12.633	ID:1	recived msg from mote: 2 with counter16 
+00:12.778	ID:2	recived msg from mote: 1 with counter16 
+00:13.119	ID:1	recived msg from mote: 2 with counter17 
+00:13.268	ID:2	recived msg from mote: 1 with counter17 
+00:13.613	ID:1	recived msg from mote: 2 with counter18 
+00:13.758	ID:2	recived msg from mote: 1 with counter18 
+00:14.100	ID:1	recived msg from mote: 2 with counter19 
+00:14.241	ID:2	recived msg from mote: 1 with counter19 
+00:14.586	ID:1	recived msg from mote: 2 with counter20 
+00:14.589	ID:1	{"ALARM":{"id_first_mote":1,"id_second_mote":2}}	//mote 1 receives another ten conscutive messages
+00:14.731	ID:2	recived msg from mote: 1 with counter20 
+00:14.733	ID:2	{"ALARM":{"id_first_mote":2,"id_second_mote":1}}	//mote 2 receives another ten conscutive messages
+00:15.077	ID:1	recived msg from mote: 2 with counter21 
+00:15.218	ID:2	recived msg from mote: 1 with counter21
+00:24.011	ID:2	recived msg from mote: 1 with counter39				//here we goes from counter value 21 to 39 because the two motes has been away from each other for a while
+00:24.352	ID:1	recived msg from mote: 2 with counter40 
+00:24.501	ID:2	recived msg from mote: 1 with counter40 
+00:24.843	ID:1	recived msg from mote: 2 with counter41 
+00:24.990	ID:2	recived msg from mote: 1 with counter41 
+00:25.327	ID:1	recived msg from mote: 2 with counter42 
+00:25.475	ID:2	recived msg from mote: 1 with counter42 
+00:25.818	ID:1	recived msg from mote: 2 with counter43 
+00:25.960	ID:2	recived msg from mote: 1 with counter43 
+00:27.913	ID:2	recived msg from mote: 1 with counter47						 
+00:28.260	ID:1	recived msg from mote: 2 with counter48				//here the two motes are close to each other again
+00:28.407	ID:2	recived msg from mote: 1 with counter48 
+00:28.748	ID:1	recived msg from mote: 2 with counter49 
+00:28.889	ID:2	recived msg from mote: 1 with counter49 
+00:29.233	ID:1	recived msg from mote: 2 with counter50 
+00:29.380	ID:2	recived msg from mote: 1 with counter50 
+00:29.723	ID:1	recived msg from mote: 2 with counter51 
+00:29.874	ID:2	recived msg from mote: 1 with counter51 
+00:30.213	ID:1	recived msg from mote: 2 with counter52 
+00:30.353	ID:2	recived msg from mote: 1 with counter52 
+00:30.700	ID:1	recived msg from mote: 2 with counter53 
+00:30.844	ID:2	recived msg from mote: 1 with counter53 
+00:31.184	ID:1	recived msg from mote: 2 with counter54 
+00:31.339	ID:2	recived msg from mote: 1 with counter54 
+00:31.676	ID:1	recived msg from mote: 2 with counter55 
+00:31.824	ID:2	recived msg from mote: 1 with counter55 
+00:32.168	ID:1	recived msg from mote: 2 with counter56 
+00:32.309	ID:2	recived msg from mote: 1 with counter56 
+00:32.311	ID:2	{"ALARM":{"id_first_mote":2,"id_second_mote":1}}	//an alert is triggered : 10 consecutive messages
+00:32.649	ID:1	recived msg from mote: 2 with counter57 
+00:32.651	ID:1	{"ALARM":{"id_first_mote":1,"id_second_mote":2}}	//an alert is triggered : 10 consecutive messages
+00:32.801	ID:2	recived msg from mote: 1 with counter57 
+00:33.143	ID:1	recived msg from mote: 2 with counter58 
